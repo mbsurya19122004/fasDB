@@ -12,3 +12,10 @@ pub fn read(key : String) -> Option<String> {
     }
 
 }
+
+#[tokio::main]
+pub async fn get(url : &str)-> Result<String, reqwest::Error>{
+    let response = reqwest::get(url).await?;
+    let body = response.text().await?;
+    return body;
+}
